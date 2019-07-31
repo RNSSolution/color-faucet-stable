@@ -1,6 +1,6 @@
 <template lang="pug">
 .section-header
-  h1 Cosmos Testnet Faucet
+  h1 Colors Testnet Faucet
   p Hello intrepid spaceperson! Use this faucet to get tokens for the #[span.chain {{ config.chain }}] testnet. Please don't abuse this service&mdash;the number of available tokens is limited.
 </template>
 
@@ -28,7 +28,7 @@ export default {
   h1
     font-size 1.5rem
     font-weight 600
-    color var(--bright)
+    color black
     line-height 1.25
 
   h1 + p

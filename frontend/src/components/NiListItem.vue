@@ -40,7 +40,7 @@ transition(name="proposal")
   router-link.ni-li.ni-li-link(v-else-if="btn && to" :to="to"): .ni-li-container
     +ni-li-thumb
     +ni-li-dl
-    btn(:value="btn" icon="chevron_right" icon-pos="right" color="primary")
+    btn(:value="btn" icon="chevron_right" icon-pos="right" color="rgb(21, 24, 45)")
 
   //- dt/dd text
   .ni-li(v-else-if='dt'): .ni-li-container
@@ -142,7 +142,7 @@ export default {
 
     .ni-li-icon
       i.material-icons
-        color var(--mc)
+        color rgba(50,194,251,0.678)
 
 .ni-li-label
 .ni-li-dl
@@ -187,7 +187,7 @@ export default {
   flex-flow column nowrap
 
   .ni-li-title
-    color var(--txt)
+    color black
     line-height 1.25
   .ni-li-subtitle
     color var(--dim)
@@ -275,6 +275,7 @@ a.ni-li-dd
   right 0
   .inactive
     display block
+    color rgba(50,194,251,0.678)
   .active
     display none
 </style>

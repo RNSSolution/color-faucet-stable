@@ -21,8 +21,8 @@
         form-msg(name='Address' type='required' v-if='!$v.fields.address.required')
         form-msg(name='Address' type='bech32' :body="bech32error" v-else-if='!$v.fields.address.bech32Validate')
       form-group
-        btn(v-if='sending' value='Sending...' disabled color="primary" size="lg")
-        btn(v-else @click='onSubmit' value="Send me tokens" color="primary" size="lg" icon="send")
+        btn(v-if='sending' value='Sending...' disabled color="#15182d" size="lg")
+        btn(v-else @click='onSubmit' value="Send me tokens" color="#15182d" size="lg" icon="send")
   section-join
   section-links
 </template>
@@ -55,13 +55,14 @@ export default {
   computed: {
     ...mapGetters(["config"])
   },
-  data: () => ({
+  data () {
+    return {
     fields: {
-      response: "",
-      address: ""
+      address: "",
+      response: ""
     },
     sending: false
-  }),
+  }},
   methods: {
     resetForm() {
       this.fields.address = "";
@@ -71,7 +72,6 @@ export default {
     },
     onVerify(response) {
       this.fields.response = response;
-     
     },
     onExpired() {
       this.$refs.recaptcha.reset();
@@ -80,9 +80,16 @@ export default {
       this.$v.$touch();
       if (this.$v.$error) return;
 
+      var bilal = JSON.stringify({
+              "address": this.fields.address,
+              "response": this.fields.response
+                // denom: values.denom,
+                // response: this.state.response
+              }); 
+
       this.sending = true;
       axios
-        .get(`http://192.168.100.7:8000/claim?address=${this.fields.address}&response=${this.fields.response}`)
+        .post('http://ec2-18-221-33-218.us-east-2.compute.amazonaws.com:8000/claim', bilal)
         .then(() => {
           this.sending = false;
           this.$store.commit("notify", {
@@ -135,15 +142,15 @@ export default {
 .section
   margin 0.5rem
   padding 1rem
-  background var(--app-bg)
+  background #fdfafaf7
+  box-shadow 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12)
   position relative
   z-index 10
   label
     display none
 
   input:-webkit-autofill
-    -webkit-text-fill-color var(--txt) !important
-    -webkit-box-shadow 0 0 0px 3rem var(--app-fg) inset
+    -webkit-text-fill-color black !important
 
   .section-main
     padding 0 1rem
