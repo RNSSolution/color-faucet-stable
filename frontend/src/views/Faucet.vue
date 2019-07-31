@@ -71,6 +71,7 @@ export default {
     },
     onVerify(response) {
       this.fields.response = response;
+     
     },
     onExpired() {
       this.$refs.recaptcha.reset();
@@ -81,10 +82,7 @@ export default {
 
       this.sending = true;
       axios
-        .post(this.config.claimUrl, {
-          address: this.fields.address,
-          response: this.fields.response
-        })
+        .get(`http://192.168.100.7:8000/claim?address=${this.fields.address}&response=${this.fields.response}`)
         .then(() => {
           this.sending = false;
           this.$store.commit("notify", {
