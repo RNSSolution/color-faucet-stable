@@ -1,7 +1,6 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 	"log"
@@ -98,17 +97,13 @@ func getCmd(command string) *exec.Cmd {
 }
 
 func getCoinsHandler(w http.ResponseWriter, request *http.Request) {
-	var claim claim_struct
 
-	// decode JSON response from front end
-	decoder := json.NewDecoder(request.Body)
-	decoderErr := decoder.Decode(&claim)
-	if decoderErr != nil {
-		panic(decoderErr)
-	}
+	address := request.URL.Query().Get("address")
+	responce := request.URL.Query().Get("response")
+	fmt.Println(address)
 
 	// make sure address is bech32
-	readableAddress, decodedAddress, decodeErr := bech32.DecodeAndConvert(claim.Address)
+	readableAddress, decodedAddress, decodeErr := bech32.DecodeAndConvert(address)
 	if decodeErr != nil {
 		panic(decodeErr)
 	}
@@ -120,7 +115,7 @@ func getCoinsHandler(w http.ResponseWriter, request *http.Request) {
 
 	// make sure captcha is valid
 	clientIP := realip.FromRequest(request)
-	captchaResponse := claim.Response
+	captchaResponse := responce
 	captchaPassed, captchaErr := recaptcha.Confirm(clientIP, captchaResponse)
 	if captchaErr != nil {
 		panic(captchaErr)
@@ -131,7 +126,7 @@ func getCoinsHandler(w http.ResponseWriter, request *http.Request) {
 
 		fmt.Println(encodedAddress)
 
-		sendFaucet := fmt.Sprintf("colorcli tx send " + encodedAddress + " " + amountFaucet + " --from=" + key + " --chain-id=" + chain)
+		sendFaucet := fmt.Sprintf("colorcli tx send " + encodedAddress + " " + amountFaucet + " --from=" + key + " --chain-id=" + chain + " --fees=2color --home /home/ubuntu/goApps/src/github.com/RNSSolution/color-sdk/build/node1/colorcli")
 		fmt.Println(time.Now().UTC().Format(time.RFC3339), encodedAddress, "[1]")
 		executeCmd(sendFaucet, "y", pass)
 	}
