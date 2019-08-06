@@ -132,7 +132,7 @@ func getCoinsHandler(w http.ResponseWriter, request *http.Request) {
 		fmt.Println(encodedAddress)
 
 		sendFaucet := fmt.Sprintf("colorcli tx send " + encodedAddress + " " + amountFaucet + " --from=" + key + " --chain-id=" + chain + " --fees=2color --home /home/ubuntu/goApps/src/github.com/RNSSolution/color-sdk/build/node1/colorcli")
-                fmt.Println(sendFaucet)
+		fmt.Println(sendFaucet)
 		fmt.Println(time.Now().UTC().Format(time.RFC3339), encodedAddress, "[1]")
 		executeCmd(sendFaucet, "y", pass)
 	}
