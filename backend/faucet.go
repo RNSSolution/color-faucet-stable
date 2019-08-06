@@ -127,7 +127,7 @@ func getCoinsHandler(w http.ResponseWriter, request *http.Request) {
 	}
 
 	// send the coins!
-	if !captchaPassed {
+	if captchaPassed {
 
 		fmt.Println(encodedAddress)
 
