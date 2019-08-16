@@ -55,15 +55,14 @@ export default {
   computed: {
     ...mapGetters(["config"])
   },
-  data() {
+  data () {
     return {
-      fields: {
-        address: "",
-        response: ""
-      },
-      sending: false
-    };
-  },
+    fields: {
+      address: "",
+      response: ""
+    },
+    sending: false
+  }},
   methods: {
     resetForm() {
       this.fields.address = "";
@@ -82,18 +81,15 @@ export default {
       if (this.$v.$error) return;
 
       var datas = JSON.stringify({
-        address: this.fields.address,
-        response: this.fields.response
-        // denom: values.denom,
-        // response: this.state.response
-      });
+              "address": this.fields.address,
+              "response": this.fields.response
+                // denom: values.denom,
+                // response: this.state.response
+              }); 
 
       this.sending = true;
       axios
-        .post(
-          "http://18.223.52.186:8000/claim",
-          datas
-        )
+        .post('http://ec2-18-221-33-218.us-east-2.compute.amazonaws.com:8000/claim', datas)
         .then(() => {
           this.sending = false;
           this.$store.commit("notify", {

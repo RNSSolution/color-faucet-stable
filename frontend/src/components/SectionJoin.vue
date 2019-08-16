@@ -2,9 +2,9 @@
 .section
   .section-header
     h1 Don't have a testnet address?
-    p There's two ways to get one. The first is by using Voyager, the crypto wallet for Cosmos. If you know command-line-fu, you can also generate an address with the Cosmos SDK.
+    p There's two ways to get one. The first is by using Voyager, the crypto wallet for Color. If you know command-line-fu, you can also generate an address with the Color SDK.
   .section-main
-    btn(type="anchor" href="https://cosmos.network/testnet" value="Join the latest testnet" size="lg" target="_blank" icon="wifi_tethering")
+    btn(type="anchor" href="https://rnssolution.github.io/colorprojectdocs/joinTestNet/" value="Join the latest testnet" size="lg" target="_blank" icon="wifi_tethering")
 </template>
 
 <script>

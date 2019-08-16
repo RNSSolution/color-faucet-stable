@@ -3,16 +3,16 @@
   tm-cookie-consent
   .top-bar
     .left
-      img(src="~assets/ColorWhiteplatform1.png" width="15%" height="30")
+      img(src="~assets/ColorWhiteplatform1.png" height="30")
       .key testnet:
       .value {{ config.chain }}
     .right
       a(href="https://antliafinalexplorer.herokuapp.com/" target="_blank") Explorer #[i.material-icons assessment]
   router-view
-  notifications(:notifications='notifications' theme='cosmos')
+  notifications(:notifications='notifications' theme='color' )
   #bottom
       h3 All rights  reserved &copy; 2019
-        p Colors Network
+        p Color Network
 </template>
 
 

@@ -4,25 +4,25 @@
     h1 Community Links
   .section-main
     list-item(
-      href="https://riot.im/app/#/room/#cosmos:matrix.org"
+      href="https://color-platform.rnssol.com/"
       target="_blank"
-      title="Community Chat"
-      subtitle="#cosmos")
+      title="Color Wallet"
+      subtitle="color-platform.rnssol.com")
     list-item(
-      href="https://riot.im/app/#/room/#cosmos_validators:matrix.org"
+      href="https://color-platform.rnssol.com:3000/validators"
       target="_blank"
       title="Validator Chat"
-      subtitle="#cosmos_validators")
+      subtitle="#color_validators")
     list-item(
-      href="https://explorecosmos.network"
+      href="https://color-platform.rnssol.com:3000/"
       target="_blank"
       title="Testnet Explorer"
-      subtitle="explorecosmos.network")
+      subtitle="color-platform.rnssol.com:3000")
     list-item(
-      href="https://cosmos.network"
+      href="https://color-platform.org/"
       target="_blank"
-      title="Cosmos Website"
-      subtitle="cosmos.network")
+      title="Color Website"
+      subtitle="color-platform.org")
 </template>
 
 <script>
