@@ -90,10 +90,7 @@ export default {
 
       this.sending = true;
       axios
-        .post(
-          "http://ec2-18-221-33-218.us-east-2.compute.amazonaws.com:8000/claim",
-          datas
-        )
+        .post("httpss://color-platform.rnssol.com:8000/claim", datas)
         .then(() => {
           this.sending = false;
           this.$store.commit("notify", {
