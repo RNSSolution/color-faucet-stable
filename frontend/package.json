@@ -1,9 +1,9 @@
 {
-  "name": "cosmos-faucet-frontend",
+  "name": "color-faucet-frontend",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve --public color-platform.rnssol.com",
+    "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "test:unit": "vue-cli-service test:unit",
@@ -39,11 +39,10 @@
     "@vue/test-utils": "^1.0.0-beta.16",
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "^22.4.3",
-    "eslint-loader": "^2.2.1",
     "lint-staged": "^6.0.0",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
-    "vue-template-compiler": "^2.5.16"
+    "vue-template-compiler": "^2.6.10"
   },
   "eslintConfig": {
     "root": true,

@@ -91,7 +91,7 @@ export default {
       this.sending = true;
       axios
         .post(
-          "http://18.223.52.186:8000/claim",
+          "http://ec2-18-221-33-218.us-east-2.compute.amazonaws.com:8000/claim",
           datas
         )
         .then(() => {
