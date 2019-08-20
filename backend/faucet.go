@@ -11,6 +11,9 @@ import (
 	"strings"
 	"time"
 
+	"github.com/gorilla/handlers"
+	"github.com/gorilla/mux"
+
 	"github.com/dpapathanasiou/go-recaptcha"
 	"github.com/joho/godotenv"
 	"github.com/tendermint/tmlibs/bech32"
@@ -56,13 +59,13 @@ func main() {
 	node = getEnv("FAUCET_NODE")
 	publicUrl = getEnv("FAUCET_PUBLIC_URL")
 
+	r := mux.NewRouter()
 	recaptcha.Init(recaptchaSecretKey)
 
-	http.HandleFunc("/claim", getCoinsHandler)
+	r.HandleFunc("/claim", getCoinsHandler)
 
-	if err := http.ListenAndServe(publicUrl, nil); err != nil {
-		log.Fatal("failed to start server", err)
-	}
+	log.Fatal(http.ListenAndServe(publicUrl, handlers.CORS(handlers.AllowedHeaders([]string{"X-Requested-With", "Content-Type", "Authorization", "Token"}), handlers.AllowedMethods([]string{"GET", "POST", "PUT", "HEAD", "OPTIONS", "DELETE"}), handlers.AllowedOrigins([]string{"*"}))(r)))
+
 }
 
 func executeCmd(command string, writes ...string) {
