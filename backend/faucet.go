@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
@@ -15,10 +16,20 @@ import (
 	"github.com/gorilla/mux"
 
 	"github.com/dpapathanasiou/go-recaptcha"
-	"github.com/joho/godotenv"
 	"github.com/tendermint/tmlibs/bech32"
 	"github.com/tomasen/realip"
 )
+
+type Data struct {
+	FAUCET_CHAIN                string `json:"FAUCET_CHAIN"`
+	FAUCET_RECAPTCHA_SECRET_KEY string `json:"FAUCET_RECAPTCHA_SECRET_KEY"`
+	FAUCET_PUBLIC_URL           string `json:"FAUCET_PUBLIC_URL"`
+	FAUCET_AMOUNT_FAUCET        string `json:"FAUCET_AMOUNT_FAUCET"`
+	FAUCET_AMOUNT_STEAK         string `json:"FAUCET_AMOUNT_STEAK"`
+	FAUCET_KEY                  string `json:"FAUCET_KEY"`
+	FAUCET_PASS                 string `json:"FAUCET_PASS"`
+	FAUCET_NODE                 string `json:"FAUCET_NODE"`
+}
 
 var chain string
 var recaptchaSecretKey string
@@ -45,24 +56,31 @@ func getEnv(key string) string {
 }
 
 func main() {
-	err := godotenv.Load(".env.local", ".env")
-	if err != nil {
-		log.Fatal("Error loading .env file")
-	}
 
-	chain = getEnv("FAUCET_CHAIN")
-	recaptchaSecretKey = getEnv("FAUCET_RECAPTCHA_SECRET_KEY")
-	amountFaucet = getEnv("FAUCET_AMOUNT_FAUCET")
-	amountSteak = getEnv("FAUCET_AMOUNT_STEAK")
-	key = getEnv("FAUCET_KEY")
-	pass = getEnv("FAUCET_PASS")
-	node = getEnv("FAUCET_NODE")
-	publicUrl = getEnv("FAUCET_PUBLIC_URL")
+	jsonFile, err := os.Open("env.local.json")
+	// err := godotenv.Load(".env.local", ".env")
+	if err != nil {
+		log.Fatal("Error loading env.local.json file")
+	}
+	defer jsonFile.Close()
+	byteValue, _ := ioutil.ReadAll(jsonFile)
+	var data Data
+	json.Unmarshal(byteValue, &data)
+
+	chain = data.FAUCET_CHAIN
+	recaptchaSecretKey = data.FAUCET_RECAPTCHA_SECRET_KEY
+	amountFaucet = data.FAUCET_AMOUNT_STEAK
+	amountSteak = data.FAUCET_AMOUNT_STEAK
+	key = data.FAUCET_KEY
+	pass = data.FAUCET_PASS
+	node = data.FAUCET_NODE
+	publicUrl = data.FAUCET_PUBLIC_URL
 
 	r := mux.NewRouter()
 	recaptcha.Init(recaptchaSecretKey)
 
 	r.HandleFunc("/claim", getCoinsHandler)
+	fmt.Println("faucet server started at 0.0.0.0:8080")
 
 	log.Fatal(http.ListenAndServe(publicUrl, handlers.CORS(handlers.AllowedHeaders([]string{"X-Requested-With", "Content-Type", "Authorization", "Token"}), handlers.AllowedMethods([]string{"GET", "POST", "PUT", "HEAD", "OPTIONS", "DELETE"}), handlers.AllowedOrigins([]string{"*"}))(r)))
 
