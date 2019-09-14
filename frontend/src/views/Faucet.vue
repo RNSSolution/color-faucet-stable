@@ -90,7 +90,7 @@ export default {
 
       this.sending = true;
       axios
-        .post("httpss://color-platform.rnssol.com:8000/claim", datas)
+        .post("https://color-platform.rnssol.com:8000/claim", datas)
         .then(() => {
           this.sending = false;
           this.$store.commit("notify", {
