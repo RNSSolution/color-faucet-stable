@@ -1,8 +1,0 @@
-FROM golang:1.12-alpine
-WORKDIR /go/src/project/
-COPY . /go/src/project
-RUN go get github.com/gorilla/handlers
-RUN go get github.com/gorilla/mux  
-
-CMD ["./faucet"]
-
