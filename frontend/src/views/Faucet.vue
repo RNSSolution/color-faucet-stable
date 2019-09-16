@@ -84,13 +84,11 @@ export default {
       var datas = JSON.stringify({
         address: this.fields.address,
         response: this.fields.response
-        // denom: values.denom,
-        // response: this.state.response
       });
 
       this.sending = true;
       axios
-        .post("https://color-platform.rnssol.com:8000/claim", datas)
+        .post(this.config.claimUrl, datas)
         .then(() => {
           this.sending = false;
           this.$store.commit("notify", {
