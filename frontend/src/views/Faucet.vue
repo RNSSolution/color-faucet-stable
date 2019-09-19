@@ -84,8 +84,6 @@ export default {
       var datas = JSON.stringify({
         address: this.fields.address,
         response: this.fields.response
-        // denom: values.denom,
-        // response: this.state.response
       });
 
       this.sending = true;
