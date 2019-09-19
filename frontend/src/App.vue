@@ -4,10 +4,10 @@
   .top-bar
     .left
       img(src="~assets/ColorWhiteplatform1.png" height="30")
-      .key testnet:
+      .key Chain-Id:
       .value {{ config.chain }}
     .right
-      a(href="https://antliafinalexplorer.herokuapp.com/" target="_blank") Explorer #[i.material-icons assessment]
+      a(href=process.env.EXPLORER_LINK_URL target="_blank") Explorer #[i.material-icons assessment]
   router-view
   notifications(:notifications='notifications' theme='color' )
   #bottom
@@ -61,7 +61,7 @@ img
     display flex
     padding 0 1rem
   .key
-    text-transform: lowercase
+    text-transform: none
     margin-right 0.5rem
     margin-left 30px
   .value

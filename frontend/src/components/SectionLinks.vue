@@ -4,25 +4,21 @@
     h1 Community Links
   .section-main
     list-item(
-      href="https://color-platform.rnssol.com/"
+      href=process.env.COLOR_WALLET_URL
       target="_blank"
-      title="Color Wallet"
-      subtitle="color-platform.rnssol.com")
+      title="Color Wallet")
     list-item(
-      href="https://color-platform.rnssol.com:3000/validators"
+      href=process.env.VALIDATOR_URL
       target="_blank"
-      title="Validator Chat"
-      subtitle="#color_validators")
+      title="Validator Chat")
     list-item(
-      href="https://color-platform.rnssol.com:3000/"
+      href=process.env.EXPLORER_URL
       target="_blank"
-      title="Testnet Explorer"
-      subtitle="color-platform.rnssol.com:3000")
+      title="Testnet Explorer")
     list-item(
-      href="https://color-platform.org/"
+      href=process.env.WEBSITE_URL
       target="_blank"
-      title="Color Website"
-      subtitle="color-platform.org")
+      title="Color Website")
 </template>
 
 <script>
