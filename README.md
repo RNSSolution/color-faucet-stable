@@ -1,6 +1,6 @@
-# Colors Testnet Faucet
+# Color Testnet Faucet
 
-This faucet app allows anyone who passes a captcha to request tokens for a Colors account address. This app needs to be deployed on a Colors testnet full node, because it relies on using the `colorcli` command to send tokens.
+This faucet app allows anyone who passes a captcha to request tokens for a Color account address. This app needs to be deployed on a Color testnet full node, because it relies on using the `colorcli` command to send tokens.
 
 ## Prerequisites
 
