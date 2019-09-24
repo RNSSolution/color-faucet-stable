@@ -43,13 +43,11 @@ img
   margin 7px !important
 
 .top-bar
-  background-image url("header.jpg")
-  background-size 750px
+  background #15182d
   position fixed
   top 0
   right 0
   text-align center
-  height 4rem
   width 100%
   z-index 100
 
@@ -90,4 +88,13 @@ img
       display flex
       padding 0 1rem
       align-items center
+
+@media screen and (max-width: 420px) {
+  .top-bar .key {
+    display none
+  }
+  img {
+    margin-right 2rem !important
+  }
+}
 </style>
